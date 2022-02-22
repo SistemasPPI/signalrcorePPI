@@ -13,7 +13,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     license_file="LICENSE",
-    url="https://github.com/mandrewcito/signalrcore",
+    url="https://github.com/SistemasPPI/signalrcorePPI",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3.6"
