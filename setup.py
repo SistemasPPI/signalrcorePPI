@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="signalrcore",
+    name="signalrcorePPI",
     version="0.9.2",
     author="mandrewcito",
     author_email="anbaalo@gmail.com",
