@@ -24,9 +24,11 @@ class BaseHubConnection(object):
             self,
             url,
             protocol,
+            auth_reconnect_function,
             headers={},
             **kwargs):        
         self.headers = headers
+        self.auth_reconnect_function = auth_reconnect_function
         self.logger = Helpers.get_logger()
         self.handlers = []
         self.stream_handlers = []
@@ -36,6 +38,7 @@ class BaseHubConnection(object):
             url=url,
             protocol=protocol,
             headers=headers,
+            auth_reconnect_function = auth_reconnect_function,
             on_message=self.on_message,
             **kwargs)
 
