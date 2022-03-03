@@ -18,6 +18,7 @@ class WebsocketTransport(BaseTransport):
     def __init__(self,
             url="",
             headers={},
+            auth_reconnect_function=None,
             keep_alive_interval=15,
             reconnection_handler=None,
             verify_ssl=False,
@@ -31,6 +32,7 @@ class WebsocketTransport(BaseTransport):
         self.skip_negotiation = skip_negotiation
         self.url = url
         self.headers = headers
+        self.auth_reconnect_function = auth_reconnect_function
         self.handshake_received = False
         self.token = None  # auth
         self.state = ConnectionState.disconnected
@@ -212,6 +214,8 @@ class WebsocketTransport(BaseTransport):
         self.reconnection_handler.reconnecting = True
         try:
             self.stop()
+            self.token = self.auth_reconnect_function()
+            self.headers["Authorization"] = "Bearer " + self.token
             self.start()
         except Exception as ex:
             self.logger.error(ex)
